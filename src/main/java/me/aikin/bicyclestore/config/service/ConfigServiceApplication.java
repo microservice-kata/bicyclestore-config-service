@@ -1,4 +1,4 @@
-package me.aikin.config.service;
+package me.aikin.bicyclestore.config.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
