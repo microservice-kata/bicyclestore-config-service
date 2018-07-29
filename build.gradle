@@ -1,0 +1,48 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:1.5.10.RELEASE"
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+}
+
+apply plugin: "java"
+apply plugin: "idea"
+apply plugin: "application"
+apply plugin: "org.springframework.boot"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+configurations {
+    providedRuntime
+}
+
+ext {
+    lombokVersion = "1.16.20"
+    springBootVersion = "1.5.10.RELEASE"
+    springCloudEurekaVersion = "1.4.5.RELEASE"
+    configServerVersion = "1.4.4.RELEASE"
+    springCloudDependenciesVersion = "Finchley.RELEASE"
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-parent:${springBootVersion}")
+    compile("org.springframework.cloud:spring-cloud-starter-eureka:${springCloudEurekaVersion}")
+    compile("org.springframework.cloud:spring-cloud-config-server:${configServerVersion}")
+    compile("org.springframework.cloud:spring-cloud-dependencies:${springCloudDependenciesVersion}")
+    compile("org.projectlombok:lombok:${lombokVersion}")
+}
+
+applicationDefaultJvmArgs = [
+    "-Xdebug -Xrunjdwp:transport=dt_socket,address=5005,server=y,suspend=n"
+]
